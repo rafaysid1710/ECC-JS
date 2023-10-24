@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Encryption/Decryption</title>
+<script src="ecc.js"></script>
+<style>
+   
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+ 
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+ 
+  form {
+    width: 100%;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: #000;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  
+  .plaintext-ciphertext {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .plaintext-ciphertext textarea {
+    width: 45%;
+  }
+
+ 
+  a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
+<script src="ecc.js"></script>
+
+<script>
+
+import { decrypt } from './ecc.js';
+
+
+document.querySelector('#decrypt').addEventListener('click', () => {
+  const ciphertext = document.querySelector('#ciphertext').value;
+  const privateKey = document.querySelector('#private_key').value;
+
+  
+  const plaintext = decrypt(ciphertext, privateKey);
+
+  
+  document.querySelector('#plaintext').value = plaintext;
+});
+</script>
+
+</head>
+
+
+<body>
+  <div class="container">
+  <h1>Decryption</h1>
+
+ 
+  <form action="#">
+    <input type="text" name="private_key" placeholder="Private key">
+
+    <textarea name="ciphertext" placeholder="Ciphertext"></textarea>
+
+    <button type="submit" name="decrypt">Decrypt</button>
+  </form>
+
+  <textarea name="plaintext" placeholder="Plain text"></textarea>
+</div>
+</body>
+
+</html>
